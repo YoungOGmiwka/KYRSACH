@@ -177,7 +177,7 @@ Node * add_recept(int num_string_add)//n- номер строки, куда ну
 	Node *prevNode;
 	Node *new_ptr;
 
-	if (num_string_add == 1)
+	if (num_string_add == 1) 
 	{
 		new_ptr = (Node *)malloc(sizeof(Node));
 		new_ptr->next = head;
@@ -185,12 +185,12 @@ Node * add_recept(int num_string_add)//n- номер строки, куда ну
 		return head;
 	}
 
-	nNode = head;
+	nNode = head; 
 	prevNode = nNode;
 
-	for (; num_string_add > 1; num_string_add--)
+	for (; num_string_add > 1; num_string_add--) 
 	{
-		if (nNode->next == NULL)//следует необходимо добавить в конец списка
+		if (nNode->next == NULL)//следует необходимо добавить в конец списка 
 		{
 			new_ptr = (Node *)malloc(sizeof(Node));
 			nNode->next = new_ptr;
@@ -218,7 +218,7 @@ void init_new_node(Node *pNode)
 	
 	//заполнеие узла списка
 	getchar();
-	printf("Введите ID нового реципла, в числовом формате: ");
+	printf("Введите ID нового рецепта, в числовом формате: ");
 	scanf("%d", &pNode->id);
 	printf("\n");
 	getchar();
@@ -240,10 +240,13 @@ void init_new_node(Node *pNode)
 
 // Удаление узла
 
+
+
 void delete_node(Node *pNode)
 {
 	Node *nNode;
 	Node *prevNode;
+
 
 	//Если удаляемый узел в начале вписка
 	if (pNode == head)
@@ -471,7 +474,7 @@ int main()
 	//завершение чтения из файла и заполнения списка
 	do
 	{
-
+		again:
 		system("cls");
 
 		printf("[0] Выйти из программы.\n[1] Добавить рецепт.\n[2] Удалить рецепт.\n[3] Поиск рецепта по неполному совпадение.\n[4] Вывод рецептов в алфавитном порядке по названию.\n[5] Вывести все рецепты.\n");
@@ -508,6 +511,12 @@ int main()
 			pNode = head;
 			while (pNode->id != num_delete)
 			{
+				if (pNode->next == NULL)
+				{
+					printf("Такого рецепта нет\n");
+					system("pause");
+					goto again;
+				}
 				pNode = pNode->next;
 			}
 
